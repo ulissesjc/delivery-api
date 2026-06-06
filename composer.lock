@@ -4,8 +4,64 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0987773ff24838ec660a28b5cd695089",
+    "content-hash": "2491d371e9f92e14b15ba13aeab910e6",
     "packages": [
+        {
+            "name": "askedio/laravel-soft-cascade",
+            "version": "13.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Askedio/laravel-soft-cascade.git",
+                "reference": "bd23ed64498ef25bbe45fbbfaa08525a09f8f20b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Askedio/laravel-soft-cascade/zipball/bd23ed64498ef25bbe45fbbfaa08525a09f8f20b",
+                "reference": "bd23ed64498ef25bbe45fbbfaa08525a09f8f20b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "^11.0|^12.0|^13.0",
+                "illuminate/database": "^11.0|^12.0|^13.0",
+                "illuminate/events": "^11.0|^12.0|^13.0",
+                "illuminate/support": "^11.0|^12.0|^13.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^9|^10|^11",
+                "phpunit/phpunit": "^11|^12|^13"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Askedio\\SoftCascade\\Providers\\GenericServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Askedio\\SoftCascade\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Will Bowman",
+                    "homepage": "https://medium.com/@asked_io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Cascade Soft Delete & Restore",
+            "support": {
+                "issues": "https://github.com/Askedio/laravel-soft-cascade/issues",
+                "source": "https://github.com/Askedio/laravel-soft-cascade/tree/13.0.0"
+            },
+            "time": "2026-03-02T18:53:24+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.14.8",
