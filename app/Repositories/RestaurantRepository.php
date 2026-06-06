@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\DTOs\StoreRestaurantDTO;
+use App\DTOs\CreateRestaurantDTO;
 use App\DTOs\UpdateRestaurantDTO;
 use App\Models\Restaurant;
 use App\Repositories\Contracts\RestaurantRepositoryInterface;
@@ -24,7 +24,7 @@ class RestaurantRepository implements RestaurantRepositoryInterface
         return $this->model->findOrFail($id);
     }
 
-    public function new(StoreRestaurantDTO $dto): Restaurant
+    public function new(CreateRestaurantDTO $dto): Restaurant
     {
         return $this->model->create((array) $dto);
     }

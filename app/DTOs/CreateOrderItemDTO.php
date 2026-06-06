@@ -2,7 +2,7 @@
 
 namespace App\DTOs;
 
-class StoreOrderItemDTO
+class CreateOrderItemDTO
 {
     public function __construct(
         public readonly int $product_id,

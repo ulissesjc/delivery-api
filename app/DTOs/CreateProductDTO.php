@@ -4,7 +4,7 @@ namespace App\DTOs;
 
 use App\Http\Requests\StoreProductRequest;
 
-class StoreProductDTO
+class CreateProductDTO
 {
     public function __construct(
         public readonly int $category_id,

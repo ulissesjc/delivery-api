@@ -4,7 +4,7 @@ namespace App\DTOs;
 
 use App\Http\Requests\StoreCategoryRequest;
 
-class StoreCategoryDTO
+class CreateCategoryDTO
 {
     public function __construct(
         public readonly int $restaurant_id,

@@ -4,7 +4,7 @@ namespace App\DTOs;
 
 use App\Http\Requests\StoreRestaurantRequest;
 
-class StoreRestaurantDTO
+class CreateRestaurantDTO
 {
     public function __construct(
         public readonly string $name,
