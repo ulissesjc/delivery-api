@@ -14,13 +14,11 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('category_id')
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained();
 
             $table->string('name', 255);
             $table->decimal('price', 10, 2);
-            $table->string('description', 255);
+            $table->string('description', 255)->nullable();
             $table->boolean('is_available')->default(true);
 
             $table->unique(['category_id', 'name']);
