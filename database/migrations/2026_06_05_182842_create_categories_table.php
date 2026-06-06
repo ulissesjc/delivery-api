@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('restaurant_id')
-                ->constrained()
-                ->cascadeOnDelete();
+            $table->foreignId('restaurant_id')->constrained();
 
             $table->string('name', 255);
+            $table->string('description', 255)->nullable();
 
             $table->unique(['restaurant_id', 'name']);
 
