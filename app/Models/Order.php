@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = [
         'restaurant_id',
@@ -21,7 +20,7 @@ class Order extends Model
 
     public function restaurant(): BelongsTo
     {
-        return $this->belongsTo(Restaurant::class);
+        return $this->belongsTo(Restaurant::class)->withTrashed();
     }
 
     public function items(): HasMany
@@ -33,7 +32,7 @@ class Order extends Model
     {
         return [
             'total' => 'decimal:2',
-            'status' => OrderStatus::class
+            'status' => OrderStatus::class,
         ];
     }
 }
