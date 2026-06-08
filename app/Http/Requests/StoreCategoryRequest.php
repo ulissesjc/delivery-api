@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreCategoryRequest extends FormRequest
 {
@@ -24,17 +23,7 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => [
-                'required',
-                'string',
-                'min:3',
-                'max:255',
-                Rule::unique('categories')
-                    ->where(fn ($query) => $query->where(
-                        'restaurant_id',
-                        $this->route('restaurant')->id
-                    )),
-            ],
+            'name' => ['required', 'string', 'min:3', 'max:255'],
             'description' => ['sometimes', 'string', 'min:5', 'max:255'],
         ];
     }
