@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\BusinessException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -39,6 +40,12 @@ return Application::configure(basePath: dirname(__DIR__))
                 return response()->json([
                     'message' => 'Recurso não encontrado',
                 ], 404);
+            }
+
+            if ($e instanceof BusinessException) {
+                return response()->json([
+                    'message' => $e->getMessage(),
+                ], 422);
             }
 
             return response()->json([
