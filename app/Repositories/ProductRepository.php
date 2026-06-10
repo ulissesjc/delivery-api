@@ -52,4 +52,15 @@ class ProductRepository implements ProductRepositoryInterface
             ->where('name', $name)
             ->exists();
     }
+
+    public function findAvailableInRestaurant(string $id, string $restaurantId): ?Product
+    {
+        return $this->model
+            ->whereKey($id)
+            ->where('is_available', true)
+            ->whereHas('category', function ($query) use ($restaurantId) {
+                $query->where('restaurant_id', $restaurantId);
+            })
+            ->first();
+    }
 }
