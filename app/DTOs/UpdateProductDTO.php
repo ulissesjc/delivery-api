@@ -10,6 +10,7 @@ class UpdateProductDTO
         public readonly ?string $name = null,
         public readonly ?float $price = null,
         public readonly ?string $description = null,
+        public readonly ?bool $is_available = null,
     ) {}
 
     public static function fromRequest(UpdateProductRequest $request): self
@@ -17,7 +18,8 @@ class UpdateProductDTO
         return new self(
             name: $request->input('name'),
             price: $request->input('price'),
-            description: $request->input('description')
+            description: $request->input('description'),
+            is_available: $request->input('is_available')
         );
     }
 }
