@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function index(Request $request): AnonymousResourceCollection
     {
-        $perPage = min($request->input('per_page', 10), 100);
+        $perPage = min($request->integer('per_page', 10), 100);
 
         return ProductResource::collection($this->service->getAll($request->route('category'), $perPage));
     }
