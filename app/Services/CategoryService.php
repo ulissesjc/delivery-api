@@ -7,40 +7,44 @@ use App\DTOs\UpdateCategoryDTO;
 use App\Exceptions\BusinessException;
 use App\Models\Category;
 use App\Repositories\Contracts\CategoryRepositoryInterface;
+use App\Repositories\Contracts\RestaurantRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class CategoryService
 {
     public function __construct(
-        protected CategoryRepositoryInterface $repository
+        protected CategoryRepositoryInterface $categoryRepository,
+        protected RestaurantRepositoryInterface $restaurantRepository
     ) {}
 
     public function getAll(string $restaurantId, int $perPage): LengthAwarePaginator
     {
-        return $this->repository->getAll($restaurantId, $perPage);
+        return $this->categoryRepository->getAll($restaurantId, $perPage);
     }
 
     public function findOne(string $id): Category
     {
-        return $this->repository->findOne($id);
+        return $this->categoryRepository->findOne($id);
     }
 
     public function new(CreateCategoryDTO $dto): Category
     {
-        if ($this->repository->alreadyExistsInRestaurant($dto->name, $dto->restaurant_id)) {
+        $this->restaurantRepository->findOne($dto->restaurant_id);
+
+        if ($this->categoryRepository->alreadyExistsInRestaurant($dto->name, $dto->restaurant_id)) {
             throw new BusinessException('Esta categoria já está cadastrada neste restaurante');
         }
 
-        return $this->repository->new($dto);
+        return $this->categoryRepository->new($dto);
     }
 
     public function update(string $id, UpdateCategoryDTO $dto): Category
     {
-        return $this->repository->update($id, $dto);
+        return $this->categoryRepository->update($id, $dto);
     }
 
     public function delete(string $id): void
     {
-        $this->repository->delete($id);
+        $this->categoryRepository->delete($id);
     }
 }

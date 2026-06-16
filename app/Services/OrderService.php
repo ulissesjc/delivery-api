@@ -8,28 +8,32 @@ use App\Exceptions\BusinessException;
 use App\Models\Order;
 use App\Repositories\Contracts\OrderRepositoryInterface;
 use App\Repositories\Contracts\ProductRepositoryInterface;
+use App\Repositories\Contracts\RestaurantRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 
 class OrderService
 {
     public function __construct(
-        protected OrderRepositoryInterface $repository,
-        protected ProductRepositoryInterface $productRepository
+        protected OrderRepositoryInterface $orderRepository,
+        protected ProductRepositoryInterface $productRepository,
+        protected RestaurantRepositoryInterface $restaurantRepository
     ) {}
 
     public function getAll(string $restaurantId, int $perPage): LengthAwarePaginator
     {
-        return $this->repository->getAll($restaurantId, $perPage);
+        return $this->orderRepository->getAll($restaurantId, $perPage);
     }
 
     public function findOne(string $id): Order
     {
-        return $this->repository->findOne($id);
+        return $this->orderRepository->findOne($id);
     }
 
     public function new(CreateOrderDTO $dto): Order
     {
+        $this->restaurantRepository->findOne($dto->restaurant_id);
+
         return DB::transaction(function () use ($dto) {
             $total = 0;
             $items = [];
@@ -53,13 +57,12 @@ class OrderService
                 ];
             }
 
-            return $this->repository->new($dto, $items, $total);
+            return $this->orderRepository->new($dto, $items, $total);
         });
-
     }
 
     public function updateStatus(string $id, UpdateOrderStatusDTO $dto): Order
     {
-        return $this->repository->updateStatus($id, $dto);
+        return $this->orderRepository->updateStatus($id, $dto);
     }
 }
