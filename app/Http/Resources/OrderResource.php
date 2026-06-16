@@ -10,6 +10,7 @@ class OrderResource extends JsonResource
     public function toArray(Request $request)
     {
         return [
+            'id' => $this->id,
             'restaurant' => new RestaurantResource($this->whenLoaded('restaurant')),
             'items' => OrderItemResource::collection($this->whenLoaded('items')),
             'status' => $this->status,
