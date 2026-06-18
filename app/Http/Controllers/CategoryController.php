@@ -20,7 +20,42 @@ class CategoryController extends Controller
     ) {}
 
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *  path="/api/restaurants/{restaurant}/categories",
+     *  summary="Listar categorias do restaurante",
+     *  tags={"Categorias"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="restaurant", in="path", required=true,
+     *
+     *      @OA\Schema(type="integer", example=1)
+     *  ),
+     *
+     *  @OA\Parameter(name="per_page", in="query", required=false,
+     *
+     *      @OA\Schema(type="integer", example=10)
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=200,
+     *      description="Lista paginada de categorias",
+     *
+     *      @OA\JsonContent(
+     *
+     *          @OA\Property(
+     *              property="data",
+     *              type="array",
+     *
+     *              @OA\Items(ref="#/components/schemas/Category")
+     *          ),
+     *
+     *          @OA\Property(property="links", type="object"),
+     *          @OA\Property(property="meta", type="object")
+     *      )
+     *  ),
+     *
+     *  @OA\Response(response=401, description="Não autenticado")
+     * )
      */
     public function index(Request $request): AnonymousResourceCollection
     {
@@ -30,7 +65,38 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *  path="/api/restaurants/{restaurant}/categories",
+     *  summary="Cadastrar categoria no restaurante",
+     *  tags={"Categorias"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="restaurant", in="path", required=true,
+     *
+     *      @OA\Schema(type="integer", example=1)
+     *  ),
+     *
+     *  @OA\RequestBody(
+     *      required=true,
+     *
+     *      @OA\JsonContent(
+     *          required={"name"},
+     *
+     *          @OA\Property(property="name", type="string", example="Hambúrgueres"),
+     *          @OA\Property(property="description", type="string", example="Artesanais e smash burgers")
+     *      )
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=201,
+     *      description="Categoria cadastrada com sucesso",
+     *
+     *      @OA\JsonContent(ref="#/components/schemas/Category")
+     *  ),
+     *
+     *  @OA\Response(response=422, description="Erro de validação dos campos"),
+     *  @OA\Response(response=401, description="Não autenticado"),
+     * )
      */
     public function store(StoreCategoryRequest $request): JsonResponse
     {
@@ -42,7 +108,27 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *  path="/api/categories/{category}",
+     *  summary="Exibir categoria",
+     *  tags={"Categorias"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="category", in="path", required=true,
+     *
+     *      @OA\Schema(type="integer", example=1)
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=200,
+     *      description="Categoria encontrada",
+     *
+     *      @OA\JsonContent(ref="#/components/schemas/Category")
+     *  ),
+     *
+     *  @OA\Response(response=401, description="Não autenticado"),
+     *  @OA\Response(response=404, description="Categoria não encontrada")
+     * )
      */
     public function show(string $id): JsonResponse
     {
@@ -52,7 +138,42 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Patch(
+     *  path="/api/categories/{category}",
+     *  summary="Atualizar categoria",
+     *  tags={"Categorias"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="category", in="path", required=true,
+     *
+     *      @OA\Schema(type="integer", example=1)
+     *  ),
+     *
+     *  @OA\RequestBody(
+     *      required=true,
+     *
+     *      @OA\JsonContent(
+     *
+     *          @OA\Property(property="name", type="string", example="Hambúrgueres"),
+     *          @OA\Property(property="description", type="string", example="Artesanais e smash burgers duplo"),
+     *      )
+     *  ),
+     *
+     *  @OA\Response(response=200, description="Categoria atualizada com sucesso",
+     *
+     *      @OA\JsonContent(
+     *
+     *          @OA\Property(property="id", type="integer", example=1),
+     *          @OA\Property(property="name", type="string", example="Hambúrgueres"),
+     *          @OA\Property(property="description", type="string", example="Artesanais e smash burgers duplo"),
+     *          @OA\Property(property="restaurant", ref="#/components/schemas/Restaurant")
+     *      ),
+     *  ),
+     *
+     *   @OA\Response(response=401, description="Não autenticado"),
+     *   @OA\Response(response=404, description="Categoria não encontrado"),
+     *   @OA\Response(response=422, description="Erro de validação dos campos")
+     * )
      */
     public function update(UpdateCategoryRequest $request, string $id): JsonResponse
     {
@@ -65,7 +186,21 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/categories/{category}",
+     *     summary="Remover categoria",
+     *     tags={"Categorias"},
+     *     security={{"bearerAuth":{}}},
+     *
+     *     @OA\Parameter(name="category", in="path", required=true,
+     *
+     *         @OA\Schema(type="integer", example=1)
+     *     ),
+     *
+     *     @OA\Response(response=204, description="Categoria removida com sucesso"),
+     *     @OA\Response(response=401, description="Não autenticado"),
+     *     @OA\Response(response=404, description="Categoria não encontrada")
+     * )
      */
     public function destroy(string $id): Response
     {

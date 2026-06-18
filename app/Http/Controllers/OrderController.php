@@ -19,7 +19,43 @@ class OrderController extends Controller
     ) {}
 
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *  path="/api/restaurants/{restaurant}/orders",
+     *  summary="Listar pedidos do restaurante",
+     *  tags={"Pedidos"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="restaurant", in="path", required=true,
+     *
+     *      @OA\Schema(type="integer", example=1)
+     *  ),
+     *
+     *  @OA\Parameter(name="per_page", in="query", required=false,
+     *
+     *      @OA\Schema(type="integer", example=10)
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=200,
+     *      description="Lista paginada de pedidos",
+     *
+     *      @OA\JsonContent(
+     *
+     *          @OA\Property(
+     *              property="data",
+     *              type="array",
+     *
+     *              @OA\Items(ref="#/components/schemas/Order")
+     *          ),
+     *
+     *          @OA\Property(property="links", type="object"),
+     *          @OA\Property(property="meta", type="object")
+     *      )
+     *  ),
+     *
+     *  @OA\Response(response=401, description="Não autenticado"),
+     *  @OA\Response(response=404, description="Restaurante não encontrado")
+     * )
      */
     public function index(Request $request): AnonymousResourceCollection
     {
@@ -29,7 +65,49 @@ class OrderController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *  path="/api/restaurants/{restaurant}/orders",
+     *  summary="Cadastrar pedido",
+     *  tags={"Pedidos"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="restaurant", in="path", required=true,
+     *
+     *      @OA\Schema(type="integer", example=1)
+     *  ),
+     *
+     *  @OA\RequestBody(
+     *      required=true,
+     *
+     *      @OA\JsonContent(
+     *          required={"items"},
+     *
+     *          @OA\Property(
+     *              property="items",
+     *              type="array",
+     *
+     *              @OA\Items(
+     *                  type="object",
+     *                  required={"product_id", "quantity"},
+     *
+     *                  @OA\Property(property="product_id", type="integer", example=1),
+     *                  @OA\Property(property="quantity", type="integer", example=3)
+     *              )
+     *          )
+     *      )
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=201,
+     *      description="Pedido cadastrado com sucesso",
+     *
+     *      @OA\JsonContent(ref="#/components/schemas/Order")
+     *  ),
+     *
+     *   @OA\Response(response=422, description="Erro de validação dos campos"),
+     *   @OA\Response(response=401, description="Não autenticado"),
+     *   @OA\Response(response=404, description="Restaurante não encontrado")
+     * )
      */
     public function store(StoreOrderRequest $request): JsonResponse
     {
@@ -41,7 +119,27 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *  path="/api/orders/{order}",
+     *  summary="Exibir pedido",
+     *  tags={"Pedidos"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="order", in="path", required=true,
+     *
+     *      @OA\Schema(type="integer", example=1)
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=200,
+     *      description="Pedido encontrado",
+     *
+     *      @OA\JsonContent(ref="#/components/schemas/Order")
+     *  ),
+     *
+     *  @OA\Response(response=401, description="Não autenticado"),
+     *  @OA\Response(response=404, description="Pedido não encontrado")
+     * )
      */
     public function show(string $id): JsonResponse
     {
@@ -51,7 +149,53 @@ class OrderController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Patch(
+     *  path="/api/orders/{order}/status",
+     *  summary="Atualizar status do pedido",
+     *  tags={"Pedidos"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="order", in="path", required=true,
+     *
+     *      @OA\Schema(type="integer", example=1)
+     *  ),
+     *
+     *  @OA\RequestBody(
+     *      required=true,
+     *
+     *      @OA\JsonContent(
+     *
+     *          @OA\Property(
+     *              property="status",
+     *              type="string",
+     *              enum={"PENDING", "PREPARING", "OUT_FOR_DELIVERY", "COMPLETED", "CANCELED"},
+     *              example="PREPARING"
+     *          )
+     *      )
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=200,
+     *      description="Status do pedido atualizado com sucesso",
+     *
+     *      @OA\JsonContent(
+     *          allOf={
+     *
+     *              @OA\Schema(ref="#/components/schemas/Order")
+     *          },
+     *
+     *          @OA\Property(
+     *              property="status",
+     *              type="string",
+     *              example="PREPARING"
+     *          )
+     *      )
+     *  ),
+     *
+     *   @OA\Response(response=401, description="Não autenticado"),
+     *   @OA\Response(response=404, description="Pedido não encontrado"),
+     *   @OA\Response(response=422, description="Erro de validação dos campos")
+     * )
      */
     public function updateStatus(UpdateOrderStatus $request, string $id): JsonResponse
     {

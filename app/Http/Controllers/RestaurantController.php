@@ -20,7 +20,37 @@ class RestaurantController extends Controller
     ) {}
 
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *  path="/api/restaurants",
+     *  summary="Listar restaurantes",
+     *  tags={"Restaurantes"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="per_page", in="query", required=false,
+     *
+     *      @OA\Schema(type="integer", example=10)
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=200,
+     *      description="Lista paginada de restaurantes",
+     *
+     *      @OA\JsonContent(
+     *
+     *          @OA\Property(
+     *              property="data",
+     *              type="array",
+     *
+     *              @OA\Items(ref="#/components/schemas/Restaurant")
+     *          ),
+     *
+     *          @OA\Property(property="links", type="object"),
+     *          @OA\Property(property="meta", type="object")
+     *      )
+     *  ),
+     *
+     *  @OA\Response(response=401, description="Não autenticado")
+     * )
      */
     public function index(Request $request): AnonymousResourceCollection
     {
@@ -30,7 +60,33 @@ class RestaurantController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *  path="/api/restaurants",
+     *  summary="Cadastrar restaurante",
+     *  tags={"Restaurantes"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\RequestBody(
+     *      required=true,
+     *
+     *      @OA\JsonContent(
+     *          required={"name", "address"},
+     *
+     *          @OA\Property(property="name", type="string", example="Burger House"),
+     *          @OA\Property(property="address", type="string", example="Rua das Flores, 123, Centro, Aracaju - SE")
+     *      )
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=201,
+     *      description="Restaurante cadastrado com sucesso",
+     *
+     *      @OA\JsonContent(ref="#/components/schemas/Restaurant")
+     *  ),
+     *
+     *   @OA\Response(response=422, description="Erro de validação dos campos"),
+     *   @OA\Response(response=401, description="Não autenticado"),
+     * )
      */
     public function store(StoreRestaurantRequest $request): JsonResponse
     {
@@ -42,7 +98,27 @@ class RestaurantController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *  path="/api/restaurants/{restaurant}",
+     *  summary="Exibir restaurante",
+     *  tags={"Restaurantes"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="restaurant", in="path", required=true,
+     *
+     *      @OA\Schema(type="integer", example=1)
+     *  ),
+     *
+     *  @OA\Response(
+     *      response=200,
+     *      description="Restaurante encontrado",
+     *
+     *      @OA\JsonContent(ref="#/components/schemas/Restaurant")
+     *  ),
+     *
+     *  @OA\Response(response=401, description="Não autenticado"),
+     *  @OA\Response(response=404, description="Restaurante não encontrado")
+     * )
      */
     public function show(string $id): JsonResponse
     {
@@ -52,7 +128,41 @@ class RestaurantController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Patch(
+     *  path="/api/restaurants/{restaurant}",
+     *  summary="Atualizar restaurante",
+     *  tags={"Restaurantes"},
+     *  security={{"bearerAuth":{}}},
+     *
+     *  @OA\Parameter(name="restaurant", in="path", required=true,
+     *
+     *      @OA\Schema(type="integer", example=1)
+     *  ),
+     *
+     *  @OA\RequestBody(
+     *      required=true,
+     *
+     *      @OA\JsonContent(
+     *
+     *          @OA\Property(property="name", type="string", example="Burger Home"),
+     *          @OA\Property(property="address", type="string", example="Rua das Flores, 124, Luzia, Aracaju - SE"),
+     *      )
+     *  ),
+     *
+     *  @OA\Response(response=200, description="Restaurante atualizado com sucesso",
+     *
+     *      @OA\JsonContent(
+     *
+     *          @OA\Property(property="id", type="integer", example=1),
+     *          @OA\Property(property="name", type="string", example="Burger Home"),
+     *          @OA\Property(property="address", type="string", example="Rua das Flores, 124, Luzia, Aracaju - SE"),
+     *      )
+     *  ),
+     *
+     *   @OA\Response(response=401, description="Não autenticado"),
+     *   @OA\Response(response=404, description="Restaurante não encontrado"),
+     *   @OA\Response(response=422, description="Erro de validação dos campos")
+     * )
      */
     public function update(UpdateRestaurantRequest $request, string $id)
     {
@@ -65,7 +175,21 @@ class RestaurantController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/api/restaurants/{restaurant}",
+     *     summary="Remover restaurante",
+     *     tags={"Restaurantes"},
+     *     security={{"bearerAuth":{}}},
+     *
+     *     @OA\Parameter(name="restaurant", in="path", required=true,
+     *
+     *         @OA\Schema(type="integer", example=1)
+     *     ),
+     *
+     *     @OA\Response(response=204, description="Restaurante removido com sucesso"),
+     *     @OA\Response(response=401, description="Não autenticado"),
+     *     @OA\Response(response=404, description="Restaurante não encontrado")
+     * )
      */
     public function destroy(string $id): Response
     {
