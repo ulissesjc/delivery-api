@@ -19,5 +19,5 @@ interface CategoryRepositoryInterface
 
     public function delete(string $id): void;
 
-    public function alreadyExistsInRestaurant(string $name, int $restaurantId): bool;
+    public function findByNameInRestaurant(string $name, int $restaurantId): ?Category;
 }

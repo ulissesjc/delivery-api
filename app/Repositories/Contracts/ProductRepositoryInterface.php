@@ -19,7 +19,7 @@ interface ProductRepositoryInterface
 
     public function delete(string $id): void;
 
-    public function alreadyExistsInCategory(string $name, int $categoryId): bool;
+    public function findByNameInCategory(string $name, int $categoryId): ?Product;
 
     public function findAvailableInRestaurant(string $id, string $restaurantId): ?Product;
 }

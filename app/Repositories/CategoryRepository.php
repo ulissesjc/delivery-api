@@ -44,11 +44,12 @@ class CategoryRepository implements CategoryRepositoryInterface
         $this->model->findOrFail($id)->delete();
     }
 
-    public function alreadyExistsInRestaurant(string $name, int $restaurantId): bool
+    public function findByNameInRestaurant(string $name, int $restaurantId): ?Category
     {
         return $this->model
+            ->withTrashed()
             ->where('restaurant_id', $restaurantId)
             ->where('name', $name)
-            ->exists();
+            ->first();
     }
 }

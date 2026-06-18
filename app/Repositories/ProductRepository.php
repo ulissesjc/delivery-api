@@ -45,12 +45,13 @@ class ProductRepository implements ProductRepositoryInterface
         $this->model->findOrFail($id)->delete();
     }
 
-    public function alreadyExistsInCategory(string $name, int $categoryId): bool
+    public function findByNameInCategory(string $name, int $categoryId): ?Product
     {
         return $this->model
+            ->withTrashed()
             ->where('category_id', $categoryId)
             ->where('name', $name)
-            ->exists();
+            ->first();
     }
 
     public function findAvailableInRestaurant(string $id, string $restaurantId): ?Product
