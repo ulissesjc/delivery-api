@@ -31,7 +31,15 @@ class CategoryService
     {
         $this->restaurantRepository->findOne($dto->restaurant_id);
 
-        if ($this->categoryRepository->alreadyExistsInRestaurant($dto->name, $dto->restaurant_id)) {
+        $category = $this->categoryRepository->findByNameInRestaurant($dto->name, $dto->restaurant_id);
+
+        if ($category) {
+            if ($category->trashed()) {
+                $category->restore();
+
+                return $category;
+            }
+
             throw new BusinessException('Esta categoria já está cadastrada neste restaurante');
         }
 

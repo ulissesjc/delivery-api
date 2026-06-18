@@ -31,7 +31,15 @@ class ProductService
     {
         $this->categoryRepository->findOne($dto->category_id);
 
-        if ($this->productRepository->alreadyExistsInCategory($dto->name, $dto->category_id)) {
+        $product = $this->productRepository->findByNameInCategory($dto->name, $dto->category_id);
+
+        if ($product) {
+            if ($product->trashed()) {
+                $product->restore();
+
+                return $product;
+            }
+
             throw new BusinessException('Este produto já está cadastrado nesta categoria');
         }
 
