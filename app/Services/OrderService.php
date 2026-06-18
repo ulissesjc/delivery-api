@@ -22,6 +22,8 @@ class OrderService
 
     public function getAll(string $restaurantId, int $perPage): LengthAwarePaginator
     {
+        $this->restaurantRepository->findOne($restaurantId);
+
         return $this->orderRepository->getAll($restaurantId, $perPage);
     }
 
