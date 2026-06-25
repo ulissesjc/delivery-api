@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\DTOs\Order\CreateOrderDTO;
 use App\DTOs\Order\UpdateOrderStatusDTO;
 use App\Http\Requests\Order\StoreOrderRequest;
-use App\Http\Requests\Order\UpdateOrderStatus;
+use App\Http\Requests\Order\UpdateOrderStatusRequest;
 use App\Http\Resources\OrderResource;
 use App\Services\OrderService;
 use Illuminate\Http\JsonResponse;
@@ -197,7 +197,7 @@ class OrderController extends Controller
      *   @OA\Response(response=422, description="Erro de validação dos campos")
      * )
      */
-    public function updateStatus(UpdateOrderStatus $request, string $id): JsonResponse
+    public function updateStatus(UpdateOrderStatusRequest $request, string $id): JsonResponse
     {
         $order = $this->service->updateStatus(
             $id,
