@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Contracts;
+namespace App\Repositories\Order;
 
 use App\DTOs\CreateOrderDTO;
 use App\DTOs\UpdateOrderStatusDTO;

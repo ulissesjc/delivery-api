@@ -6,7 +6,7 @@ use App\DTOs\CreateOrderDTO;
 use App\DTOs\UpdateOrderStatusDTO;
 use App\Enums\OrderStatus;
 use App\Models\Order;
-use App\Repositories\Contracts\OrderRepositoryInterface;
+use App\Repositories\Order\OrderRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class OrderRepository implements OrderRepositoryInterface

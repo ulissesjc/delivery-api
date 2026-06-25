@@ -6,9 +6,9 @@ use App\DTOs\CreateOrderDTO;
 use App\DTOs\UpdateOrderStatusDTO;
 use App\Exceptions\BusinessException;
 use App\Models\Order;
-use App\Repositories\Contracts\OrderRepositoryInterface;
-use App\Repositories\Contracts\ProductRepositoryInterface;
-use App\Repositories\Contracts\RestaurantRepositoryInterface;
+use App\Repositories\Order\OrderRepositoryInterface;
+use App\Repositories\Product\ProductRepositoryInterface;
+use App\Repositories\Restaurant\RestaurantRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 

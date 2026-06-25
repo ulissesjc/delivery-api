@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
+use App\Repositories\Category\CategoryRepositoryInterface;
 use App\Repositories\CategoryRepository;
-use App\Repositories\Contracts\CategoryRepositoryInterface;
-use App\Repositories\Contracts\OrderRepositoryInterface;
-use App\Repositories\Contracts\ProductRepositoryInterface;
-use App\Repositories\Contracts\RestaurantRepositoryInterface;
+use App\Repositories\Order\OrderRepositoryInterface;
 use App\Repositories\OrderRepository;
+use App\Repositories\Product\ProductRepositoryInterface;
 use App\Repositories\ProductRepository;
+use App\Repositories\Restaurant\RestaurantRepositoryInterface;
 use App\Repositories\RestaurantRepository;
 use Illuminate\Support\ServiceProvider;
 

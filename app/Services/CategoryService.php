@@ -6,8 +6,8 @@ use App\DTOs\CreateCategoryDTO;
 use App\DTOs\UpdateCategoryDTO;
 use App\Exceptions\BusinessException;
 use App\Models\Category;
-use App\Repositories\Contracts\CategoryRepositoryInterface;
-use App\Repositories\Contracts\RestaurantRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Restaurant\RestaurantRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class CategoryService

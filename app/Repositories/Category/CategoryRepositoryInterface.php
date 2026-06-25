@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Contracts;
+namespace App\Repositories\Category;
 
 use App\DTOs\CreateCategoryDTO;
 use App\DTOs\UpdateCategoryDTO;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Contracts;
+namespace App\Repositories\Restaurant;
 
 use App\DTOs\CreateRestaurantDTO;
 use App\DTOs\UpdateRestaurantDTO;

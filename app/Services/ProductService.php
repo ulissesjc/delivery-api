@@ -6,8 +6,8 @@ use App\DTOs\CreateProductDTO;
 use App\DTOs\UpdateProductDTO;
 use App\Exceptions\BusinessException;
 use App\Models\Product;
-use App\Repositories\Contracts\CategoryRepositoryInterface;
-use App\Repositories\Contracts\ProductRepositoryInterface;
+use App\Repositories\Category\CategoryRepositoryInterface;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductService

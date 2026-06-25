@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\DTOs\CreateProductDTO;
 use App\DTOs\UpdateProductDTO;
 use App\Models\Product;
-use App\Repositories\Contracts\ProductRepositoryInterface;
+use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductRepository implements ProductRepositoryInterface

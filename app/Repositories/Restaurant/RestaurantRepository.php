@@ -5,7 +5,7 @@ namespace App\Repositories;
 use App\DTOs\CreateRestaurantDTO;
 use App\DTOs\UpdateRestaurantDTO;
 use App\Models\Restaurant;
-use App\Repositories\Contracts\RestaurantRepositoryInterface;
+use App\Repositories\Restaurant\RestaurantRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class RestaurantRepository implements RestaurantRepositoryInterface
