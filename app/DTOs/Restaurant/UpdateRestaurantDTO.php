@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DTOs;
+namespace App\DTOs\Restaurant;
 
-use App\Http\Requests\UpdateRestaurantRequest;
+use App\Http\Requests\Restaurant\UpdateRestaurantRequest;
 
 class UpdateRestaurantDTO
 {

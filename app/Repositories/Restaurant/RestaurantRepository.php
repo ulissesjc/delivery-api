@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Restaurant;
 
-use App\DTOs\CreateRestaurantDTO;
-use App\DTOs\UpdateRestaurantDTO;
+use App\DTOs\Restaurant\CreateRestaurantDTO;
+use App\DTOs\Restaurant\UpdateRestaurantDTO;
 use App\Models\Restaurant;
-use App\Repositories\Restaurant\RestaurantRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class RestaurantRepository implements RestaurantRepositoryInterface

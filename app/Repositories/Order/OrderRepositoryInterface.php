@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Order;
 
-use App\DTOs\CreateOrderDTO;
-use App\DTOs\UpdateOrderStatusDTO;
+use App\DTOs\Order\CreateOrderDTO;
+use App\DTOs\Order\UpdateOrderStatusDTO;
 use App\Models\Order;
 use Illuminate\Pagination\LengthAwarePaginator;
 

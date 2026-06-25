@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
+use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
-use App\Repositories\CategoryRepository;
+use App\Repositories\Order\OrderRepository;
 use App\Repositories\Order\OrderRepositoryInterface;
-use App\Repositories\OrderRepository;
+use App\Repositories\Product\ProductRepository;
 use App\Repositories\Product\ProductRepositoryInterface;
-use App\Repositories\ProductRepository;
+use App\Repositories\Restaurant\RestaurantRepository;
 use App\Repositories\Restaurant\RestaurantRepositoryInterface;
-use App\Repositories\RestaurantRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

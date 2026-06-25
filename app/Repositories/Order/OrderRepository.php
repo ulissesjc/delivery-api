@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Order;
 
-use App\DTOs\CreateOrderDTO;
-use App\DTOs\UpdateOrderStatusDTO;
+use App\DTOs\Order\CreateOrderDTO;
+use App\DTOs\Order\UpdateOrderStatusDTO;
 use App\Enums\OrderStatus;
 use App\Models\Order;
-use App\Repositories\Order\OrderRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class OrderRepository implements OrderRepositoryInterface

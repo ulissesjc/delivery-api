@@ -1,9 +1,9 @@
 <?php
 
-namespace App\DTOs;
+namespace App\DTOs\Order;
 
 use App\Enums\OrderStatus;
-use App\Http\Requests\UpdateOrderStatus;
+use App\Http\Requests\Order\UpdateOrderStatus;
 
 class UpdateOrderStatusDTO
 {

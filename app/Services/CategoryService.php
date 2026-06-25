@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\DTOs\CreateCategoryDTO;
-use App\DTOs\UpdateCategoryDTO;
+use App\DTOs\Category\CreateCategoryDTO;
+use App\DTOs\Category\UpdateCategoryDTO;
 use App\Exceptions\BusinessException;
 use App\Models\Category;
 use App\Repositories\Category\CategoryRepositoryInterface;

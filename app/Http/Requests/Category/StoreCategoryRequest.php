@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Category;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class StoreCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,8 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'min:5', 'max:255'],
-            'price' => ['required', 'numeric', 'gt:0'],
+            'name' => ['required', 'string', 'min:3', 'max:255'],
             'description' => ['sometimes', 'string', 'min:5', 'max:255'],
-            'is_available' => ['boolean'],
         ];
     }
 
@@ -37,16 +35,11 @@ class StoreProductRequest extends FormRequest
             'name.string' => 'O nome deve ser um texto válido',
             'name.min' => 'O nome deve ter no mínimo :min caracteres',
             'name.max' => 'O nome deve ter no máximo :max caracteres',
-
-            'price.required' => 'O preço é obrigatório',
-            'price.numeric' => 'O preço deve ser um valor numérico',
-            'price.gt' => 'O preço deve ser maior que 0',
+            'name.unique' => 'Esta categoria já está cadastrada neste restaurante',
 
             'description.string' => 'A descrição deve ser um texto válido',
             'description.min' => 'A descrição deve ter no mínimo :min caracteres',
             'description.max' => 'A descrição deve ter no máximo :max caracteres',
-
-            'is_available.boolean' => 'A disponibilidade deve ser verdadeira ou falsa',
         ];
     }
 }

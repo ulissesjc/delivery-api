@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\DTOs\CreateRestaurantDTO;
-use App\DTOs\UpdateRestaurantDTO;
+use App\DTOs\Restaurant\CreateRestaurantDTO;
+use App\DTOs\Restaurant\UpdateRestaurantDTO;
 use App\Models\Restaurant;
 use App\Repositories\Restaurant\RestaurantRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;

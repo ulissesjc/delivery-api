@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DTOs\CreateCategoryDTO;
-use App\DTOs\UpdateCategoryDTO;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+use App\DTOs\Category\CreateCategoryDTO;
+use App\DTOs\Category\UpdateCategoryDTO;
+use App\Http\Requests\Category\StoreCategoryRequest;
+use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Services\CategoryService;
 use Illuminate\Http\JsonResponse;

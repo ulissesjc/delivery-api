@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DTOs\CreateRestaurantDTO;
-use App\DTOs\UpdateRestaurantDTO;
-use App\Http\Requests\StoreRestaurantRequest;
-use App\Http\Requests\UpdateRestaurantRequest;
+use App\DTOs\Restaurant\CreateRestaurantDTO;
+use App\DTOs\Restaurant\UpdateRestaurantDTO;
+use App\Http\Requests\Restaurant\StoreRestaurantRequest;
+use App\Http\Requests\Restaurant\UpdateRestaurantRequest;
 use App\Http\Resources\RestaurantResource;
 use App\Services\RestaurantService;
 use Illuminate\Http\JsonResponse;

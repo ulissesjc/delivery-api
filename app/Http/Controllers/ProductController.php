@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DTOs\CreateProductDTO;
-use App\DTOs\UpdateProductDTO;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
+use App\DTOs\Product\CreateProductDTO;
+use App\DTOs\Product\UpdateProductDTO;
+use App\Http\Requests\Product\StoreProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Services\ProductService;
 use Illuminate\Http\JsonResponse;

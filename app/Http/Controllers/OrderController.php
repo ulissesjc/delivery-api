@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DTOs\CreateOrderDTO;
-use App\DTOs\UpdateOrderStatusDTO;
-use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\UpdateOrderStatus;
+use App\DTOs\Order\CreateOrderDTO;
+use App\DTOs\Order\UpdateOrderStatusDTO;
+use App\Http\Requests\Order\StoreOrderRequest;
+use App\Http\Requests\Order\UpdateOrderStatus;
 use App\Http\Resources\OrderResource;
 use App\Services\OrderService;
 use Illuminate\Http\JsonResponse;

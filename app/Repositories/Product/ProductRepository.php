@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Product;
 
-use App\DTOs\CreateProductDTO;
-use App\DTOs\UpdateProductDTO;
+use App\DTOs\Product\CreateProductDTO;
+use App\DTOs\Product\UpdateProductDTO;
 use App\Models\Product;
-use App\Repositories\Product\ProductRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductRepository implements ProductRepositoryInterface

@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\DTOs\CreateProductDTO;
-use App\DTOs\UpdateProductDTO;
+use App\DTOs\Product\CreateProductDTO;
+use App\DTOs\Product\UpdateProductDTO;
 use App\Exceptions\BusinessException;
 use App\Models\Product;
 use App\Repositories\Category\CategoryRepositoryInterface;

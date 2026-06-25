@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Product;
 
-use App\DTOs\CreateProductDTO;
-use App\DTOs\UpdateProductDTO;
+use App\DTOs\Product\CreateProductDTO;
+use App\DTOs\Product\UpdateProductDTO;
 use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 

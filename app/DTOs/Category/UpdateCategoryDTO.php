@@ -1,8 +1,8 @@
 <?php
 
-namespace App\DTOs;
+namespace App\DTOs\Category;
 
-use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Requests\Category\UpdateCategoryRequest;
 
 class UpdateCategoryDTO
 {

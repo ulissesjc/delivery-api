@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\DTOs\CreateOrderDTO;
-use App\DTOs\UpdateOrderStatusDTO;
+use App\DTOs\Order\CreateOrderDTO;
+use App\DTOs\Order\UpdateOrderStatusDTO;
 use App\Exceptions\BusinessException;
 use App\Models\Order;
 use App\Repositories\Order\OrderRepositoryInterface;

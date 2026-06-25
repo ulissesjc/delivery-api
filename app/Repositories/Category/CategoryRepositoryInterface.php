@@ -2,8 +2,8 @@
 
 namespace App\Repositories\Category;
 
-use App\DTOs\CreateCategoryDTO;
-use App\DTOs\UpdateCategoryDTO;
+use App\DTOs\Category\CreateCategoryDTO;
+use App\DTOs\Category\UpdateCategoryDTO;
 use App\Models\Category;
 use Illuminate\Pagination\LengthAwarePaginator;
 
